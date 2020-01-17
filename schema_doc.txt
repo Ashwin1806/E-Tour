@@ -1,0 +1,121 @@
+
+
+> desc categorysubcategory;
++------------------+-------------+------+-----+---------+----------------+
+| Field            | Type        | Null | Key | Default | Extra          |
++------------------+-------------+------+-----+---------+----------------+
+| catsubid         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| categoryid       | int(11)     | YES  |     | NULL    |                |
+| categoryname     | varchar(50) | YES  |     | NULL    |                |
+| categoryimage    | varchar(50) | YES  |     | NULL    |                |
+| subcategoryid    | int(11)     | YES  |     | NULL    |                |
+| subcategoryname  | varchar(50) | YES  |     | NULL    |                |
+| subcategoryimage | varchar(50) | YES  |     | NULL    |                |
+| eofflag          | varchar(5)  | YES  |     | NULL    |                |
++------------------+-------------+------+-----+---------+----------------+
+8 rows in set (0.02 sec)
+
+ desc packagecompletedetail;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| packageid   | int(11)      | NO   | PRI | NULL    | auto_increment |
+| tourname    | varchar(45)  | YES  |     | NULL    |                |
+| tourimage   | varchar(45)  | YES  |     | NULL    |                |
+| catsubid    | int(11)      | YES  | MUL | NULL    |                |
+| description | varchar(300) | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.04 sec)
+
+
+ desc datepackagedetail;
++-----------------+------------+------+-----+---------+----------------+
+| Field           | Type       | Null | Key | Default | Extra          |
++-----------------+------------+------+-----+---------+----------------+
+| datepackageid   | int(11)    | NO   | PRI | NULL    | auto_increment |
+| startdate       | date       | NO   |     | NULL    |                |
+| enddate         | date       | NO   |     | NULL    |                |
+| packageid       | int(11)    | YES  | MUL | NULL    |                |
+| reversetripflag | varchar(5) | YES  |     | NULL    |                |
++-----------------+------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+
+ desc itinerary;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| dayid              | int(11)     | NO   | PRI | 0       |       |
+| packageid          | int(11)     | NO   | PRI | 0       |       |
+| daywisedescription | text        | YES  |     | NULL    |       |
+| location           | varchar(20) | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+ desc customerdetail;
++------------------+--------------+------+-----+---------+----------------+
+| Field            | Type         | Null | Key | Default | Extra          |
++------------------+--------------+------+-----+---------+----------------+
+| customerid       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| customername     | varchar(50)  | YES  |     | NULL    |                |
+| email            | varchar(45)  | YES  |     | NULL    |                |
+| password         | varchar(30)  | YES  |     | NULL    |                |
+| address1         | varchar(200) | YES  |     | NULL    |                |
+| address2         | varchar(200) | YES  |     | NULL    |                |
+| city             | varchar(20)  | YES  |     | NULL    |                |
+| state            | varchar(20)  | YES  |     | NULL    |                |
+| pin              | smallint(8)  | YES  |     | NULL    |                |
+| telno            | varchar(10)  | YES  |     | NULL    |                |
+| mobileno         | varchar(10)  | YES  |     | NULL    |                |
+| registrationdate | timestamp    | YES  |     | NULL    |                |
++------------------+--------------+------+-----+---------+----------------+
+12 rows in set (0.00 sec)
+
+
+
+ desc bookingdetail;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| bookingid     | int(11)     | NO   | PRI | NULL    | auto_increment |
+| datepackageid | int(11)     | YES  | MUL | NULL    |                |
+| bookingdate   | date        | YES  |     | NULL    |                |
+| customerid    | int(11)     | YES  | MUL | NULL    |                |
+| packageid     | int(11)     | YES  | MUL | NULL    |                |
+| passengerid   | int(11)     | YES  | MUL | NULL    |                |
+| activestatus  | varchar(10) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+
+
+ 
+mysql> desc passengerdetail;
++---------------------+---------------+------+-----+---------+----------------+
+| Field               | Type          | Null | Key | Default | Extra          |
++---------------------+---------------+------+-----+---------+----------------+
+| passengerid         | int(11)       | NO   | PRI | NULL    | auto_increment |
+| bookingid           | int(11)       | YES  | MUL | NULL    |                |
+| passengername       | varchar(50)   | YES  |     | NULL    |                |
+| passengerdob        | date          | YES  |     | NULL    |                |
+| roomtype            | varchar(20)   | YES  |     | NULL    |                |
+| cost                | decimal(10,3) | YES  |     | NULL    |                |
+| passengeriddocument | varchar(45)   | YES  |     | NULL    |                |
+| passengeridno       | int(11)       | YES  |     | NULL    |                |
+| passengerdetailcol  | varchar(45)   | YES  |     | NULL    |                |
+| passengersex        | varchar(10)   | YES  |     | NULL    |                |
+| passengeremail      | varchar(30)   | YES  |     | NULL    |                |
++---------------------+---------------+------+-----+---------+----------------+
+11 rows in set (0.01 sec)
+
+ desc pricedetail;
++-------------------+---------------+------+-----+---------+-------+
+| Field             | Type          | Null | Key | Default | Extra |
++-------------------+---------------+------+-----+---------+-------+
+| priceid           | int(11)       | NO   | PRI | 0       |       |
+| packageid         | int(11)       | NO   | PRI | 0       |       |
+| adultprice        | decimal(10,3) | NO   |     | NULL    |       |
+| childrenprice     | decimal(10,3) | NO   |     | NULL    |       |
+| additionalcharges | decimal(10,3) | NO   |     | NULL    |       |
++-------------------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
